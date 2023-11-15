@@ -1,3 +1,3 @@
-resource "aws_ecr_repository" "hermes" {
-  name = "hermes"
-}
+# resource "aws_ecr_repository" "hermes" {
+#   name = "hermes"
+# }
