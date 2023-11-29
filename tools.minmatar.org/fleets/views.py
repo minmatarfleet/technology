@@ -89,6 +89,8 @@ def create_fleet(request):
 def view_fleet(request, pk):
     is_fleet_commander = False
     fleet = EveFleet.objects.get(pk=pk)
+    if not request.user.is_anonymous and fleet.fleet_commander_id == request.user.eve_character.character_id:
+        is_fleet_commander = True
     if not request.user.is_anonymous and character_id_has_roles(request.user.eve_character.character_id, ['FC', 'Frontline FC']):
         is_fleet_commander = True
     return render(request, 'fleets/fleet_view.html', {'fleet': fleet, 'is_fleet_commander': is_fleet_commander})
